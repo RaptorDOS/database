@@ -1,0 +1,66 @@
+#include"stdio.h"
+#include"stdlib.h"
+struct node
+{
+char a[40];
+struct node *right,*sub;
+}*start=NULL;
+struct node *abcd()                                                                                           //creating a node
+{
+struct node *abs=(struct node *)malloc(sizeof(struct node));
+printf("enter the element ");
+scanf("%s",&abs->a);
+abs->right=abs->sub=NULL;
+return abs;                                                         //returning the element
+}
+struct node *build(struct node *ele,int row ,int column)
+{
+struct node *trav;
+int i,j,item;
+for(i=1;i<=row;i++)
+{
+for(j=1;j<=column;j++)
+{
+ele=(struct node *)malloc(sizeof(struct node));
+if(j==1)
+{
+    trav=&ele;
+    ele=abcd();
+}
+ele->right=abcd();
+ele=ele->right;
+}
+ele=trav->sub;
+}
+}
+void trav(struct node *ele,int row,int column)
+{struct node *trav;
+    ele=start;
+    for(int i=1;i<=row;i++)
+{
+        for(int j=1;j<=column;j++)
+        {  if(j=1)
+        {
+             trav=&ele;
+             ele=abcd();
+        }
+            printf("%s",ele->a);
+        }
+ele=trav->sub;
+}
+}
+void main()
+{
+struct node *ele=start;
+ele=(struct node *)malloc(sizeof(struct node));
+printf("enter the number of rows");
+int row;
+scanf("%d",&row);
+printf("enter the number of columns");
+int column;
+scanf("%d",&column);
+build(ele,row,column);
+trav(ele,row,column);
+}
+
+
